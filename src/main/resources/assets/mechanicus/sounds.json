@@ -1,0 +1,10 @@
+{
+    "servo.skull.ambient": {
+        "category": "neutral",
+        "sounds": [
+            "mechanicus:servo_skull_ambient1",
+            "mechanicus:servo_skull_ambient2"
+        ],
+        "subtitle": "mechanicus:subtitles.servo.skull.ambient"
+    }
+}
