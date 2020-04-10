@@ -1,0 +1,6 @@
+{
+ "parent": "block/cube_all",
+ "textures": {
+  "all": "mechanicus:blocks/ouslite_block"
+ }
+}

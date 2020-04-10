@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "mechanicus:adamantium_block"
+        }
+    ],
+    "result": {
+        "item": "mechanicus:adamantium_ingot", 
+        "count": 9 
+    }
+}

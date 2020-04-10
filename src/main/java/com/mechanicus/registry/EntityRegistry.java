@@ -25,9 +25,9 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class EntityRegistry {
  
 	private static List<EntityType> registeredEntities = Lists.newArrayList();
-	private static List<Item> spawnEggs = Lists.newArrayList(); 
+	public static List<Item> spawnEggs = Lists.newArrayList(); 
 	
-	public static final EntityType<MEntityServoSkull> SERVO_SKULL = createEntity(MEntityServoSkull.class, MEntityServoSkull::new, 0.5F, 0.5F, 0xFFFFFF, 0xFFFFFF);
+	public static final EntityType<MEntityServoSkull> SERVO_SKULL = createEntity(MEntityServoSkull.class, MEntityServoSkull::new, 0.5F, 0.75F, 0xFFFFFF, 0xFFFFFF);
     
     private static <T extends AnimalEntity> EntityType<T> createEntity(Class<T> entityClass, EntityType.IFactory<T> factory, float width, float height, int eggPrimary, int eggSecondary) {
         ResourceLocation location = new ResourceLocation(MLib.MODID, classToString(entityClass));

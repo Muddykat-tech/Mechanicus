@@ -1,21 +1,28 @@
 package com.mechanicus;
 
+import com.mechanicus.client.ClientHandlerer;
 import com.mechanicus.client.renderer.ServoSkullRenderer;
 import com.mechanicus.client.renderer.UpgradeStationRenderer;
 import com.mechanicus.client.sound.MSoundRegistry;
+import com.mechanicus.common.crafting.ServoSkullCraftingRecipes;
 import com.mechanicus.common.entity.MEntityServoSkull;
 import com.mechanicus.common.tileentities.MTEUpgradeStation;
 import com.mechanicus.lib.MLib;
 import com.mechanicus.registry.BlockRegistry;
+import com.mechanicus.registry.ContainerRegistry;
 import com.mechanicus.registry.ItemRegistry;
 import com.mechanicus.registry.TileEntityRegistry;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.model.ModelResourceLocation;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -35,25 +42,26 @@ public class Mechanicus {
 		final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		eventBus.addListener(this::modConstruction);
 		eventBus.addListener(this::setupClient);
+
 		//register ourself
+		MinecraftForge.EVENT_BUS.register(new ClientHandlerer());
 		MinecraftForge.EVENT_BUS.register(this);
-		
-		//register other handlers
 		
 	}
 	
 	
 	private void modConstruction(final FMLCommonSetupEvent event) {
-		TileEntityRegistry.prepareTileEntities();
+		 ContainerRegistry.registerScreens();
+		 ServoSkullCraftingRecipes.initialize();
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public void setupClient(final FMLClientSetupEvent event) {
         RenderingRegistry.registerEntityRenderingHandler(MEntityServoSkull.class, ServoSkullRenderer::new);
-        
-    }
+        ClientRegistry.bindTileEntitySpecialRenderer(MTEUpgradeStation.class, new UpgradeStationRenderer());
+	}
 	
-	
+	 
 	@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
         @SubscribeEvent
@@ -69,13 +77,12 @@ public class Mechanicus {
         
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
-        	//TileEntityRegistry.parseTileEntityRegistry(event);
+        	TileEntityRegistry.parseTileEntityRegistry(event);
         }
         
         @SubscribeEvent
-        @OnlyIn(Dist.CLIENT)
-        public static void registerModels (ModelBakeEvent event) {
-    		ClientRegistry.bindTileEntitySpecialRenderer(MTEUpgradeStation.class, new UpgradeStationRenderer());
-    	}
+        public static void onContainerTypeRegistry(final RegistryEvent.Register<ContainerType<?>> event) {
+        	ContainerRegistry.parseRegistry(event);
+        }
 	}
-} 
+}  

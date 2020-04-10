@@ -1,30 +1,27 @@
 package com.mechanicus.registry;
 
 import java.util.ArrayList;
+import java.util.function.Supplier;
 
 import com.mechanicus.common.block.MUpgradeStation;
 import com.mechanicus.common.tileentities.MTEUpgradeStation;
 import com.mechanicus.lib.MLib;
+import com.mechanicus.registry.helper.TileEntityNames;
 
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.registries.ObjectHolder;
 
 public class TileEntityRegistry {
-	public static ArrayList<TileEntityType<?>> registeredTileEntities = new ArrayList<TileEntityType<?>>();
-	
-	public static TileEntityType<MTEUpgradeStation> UPGRADE_STATION;
-	
-	
-	public static void prepareTileEntities() {
-		registeredTileEntities.add(UPGRADE_STATION);
-	}
-	
-	public static void parseTileEntityRegistry(RegistryEvent.Register<TileEntityType<?>> evt) {
-		for(TileEntityType<?> type : registeredTileEntities) {
-		  type = TileEntityType.Builder.create(MTEUpgradeStation::new).build(null);
-		  type.setRegistryName(MLib.MODID, "tile_" + MUpgradeStation.getName());
-		  evt.getRegistry().register(type);
-		}
+	@ObjectHolder(TileEntityNames.UPGRADE_STATION)
+    public static TileEntityType<?> UPGRADE_STATION;
+
+	public static void parseTileEntityRegistry(RegistryEvent.Register<TileEntityType<?>> e) {
+
+		e.getRegistry().registerAll(
+                TileEntityType.Builder.create((Supplier<TileEntity>) MTEUpgradeStation::new, BlockRegistry.UPGRADE_STATION).build(null).setRegistryName(TileEntityNames.UPGRADE_STATION));
+		
 	}
 
 }

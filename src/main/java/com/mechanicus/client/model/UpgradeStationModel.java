@@ -13,16 +13,16 @@ public class UpgradeStationModel extends Model
   
   public UpgradeStationModel()
   {
-    textureWidth = 64;
+    textureWidth = 128;
     textureHeight = 128;
     
-      leftpart = new RendererModel(this, 0, 0);
+      leftpart = new RendererModel(this, 0, 27);
       leftpart.addBox(-4F, -9F, -1F, 8, 13, 3);
       leftpart.setRotationPoint(-11F, 20F, 11F);
       leftpart.setTextureSize(64, 32);
       leftpart.mirror = true;
       setRotation(leftpart, 0F, -0.7853982F, 0F);
-      rightpart = new RendererModel(this, 0, 0);
+      rightpart = new RendererModel(this, 0, 27);
       rightpart.addBox(-4F, -13F, -1F, 8, 13, 3);
       rightpart.setRotationPoint(11F, 24F, 11F);
       rightpart.setTextureSize(64, 32);

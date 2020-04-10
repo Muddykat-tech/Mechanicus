@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "mechanicus:noctilith_block"
+        }
+    ],
+    "result": {
+        "item": "mechanicus:noctilith_stone", 
+        "count": 9 
+    }
+}

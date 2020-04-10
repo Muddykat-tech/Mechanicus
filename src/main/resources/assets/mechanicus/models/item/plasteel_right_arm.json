@@ -1,0 +1,6 @@
+{
+ "parent": "item/generated",
+ "textures": {
+  "layer0": "mechanicus:items/upgrades/plasteel_right_arm"
+ }
+}

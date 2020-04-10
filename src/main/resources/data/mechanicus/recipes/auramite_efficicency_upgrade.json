@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "mechanicus:efficiency_upgrade_plasteel"
+        },
+        {
+            "item": "mechanicus:auramite_ingot"
+        },
+        {
+            "item": "mechanicus:auramite_ingot"
+        }
+    ],
+    "result": {
+        "item": "mechanicus:efficiency_upgrade_auramite"
+    }
+}

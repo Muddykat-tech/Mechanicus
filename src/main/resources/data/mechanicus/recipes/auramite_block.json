@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SSS",
+        "SSS",
+        "SSS"
+    ],
+    "key": {
+        "S": { "item": "mechanicus:auramite_ingot" }
+    },
+    "result": { "item": "mechanicus:auramite_block", "count": 1 }
+}

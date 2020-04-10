@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " SS",
+        "SPS",
+        "BS "
+    ],
+    "key": {
+        "S": { "item": "mechanicus:auramite_ingot" },
+        "B": { "item": "mechanicus:auramite_block" },
+        "P": { "item": "mechanicus:drill_plasteel" }
+    },
+    "result": { "item": "mechanicus:drill_auramite", "count": 1 }
+}

@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SSS",
+        "SSS",
+        "SSS"
+    ],
+    "key": {
+        "S": { "item": "mechanicus:plasteel_ingot" }
+    },
+    "result": { "item": "mechanicus:plasteel_block", "count": 1 }
+}

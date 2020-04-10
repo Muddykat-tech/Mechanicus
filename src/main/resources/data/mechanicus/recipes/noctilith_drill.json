@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " SS",
+        "SPS",
+        "BS "
+    ],
+    "key": {
+        "S": { "item": "mechanicus:noctilith_stone" },
+        "B": { "item": "mechanicus:noctilith_block" },
+        "P": { "item": "mechanicus:drill_adamantium" }
+    },
+    "result": { "item": "mechanicus:drill_noctilith", "count": 1 }
+}

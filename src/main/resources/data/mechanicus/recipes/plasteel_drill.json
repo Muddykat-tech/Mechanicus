@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "GSS",
+        "SPS",
+        "BSG"
+    ],
+    "key": {
+        "G": { "item": "minecraft:gold_nugget" },
+        "S": { "item": "mechanicus:plasteel_ingot" },
+        "B": { "item": "mechanicus:plasteel_block" },
+        "P": { "item": "mechanicus:unknown_machine_part" }
+    },
+    "result": { "item": "mechanicus:drill_plasteel", "count": 1 }
+}

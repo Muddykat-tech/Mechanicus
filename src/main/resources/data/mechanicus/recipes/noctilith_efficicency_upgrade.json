@@ -1,0 +1,35 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "mechanicus:efficiency_upgrade_adamantium"
+        },
+        {
+            "item": "mechanicus:noctilith_stone"
+        },
+        {
+            "item": "mechanicus:noctilith_stone"
+        },
+        {
+            "item": "mechanicus:noctilith_stone"
+        },
+        {
+            "item": "mechanicus:noctilith_stone"
+        },
+        {
+            "item": "mechanicus:noctilith_stone"
+        },
+        {
+            "item": "mechanicus:noctilith_stone"
+        },
+        {
+            "item": "mechanicus:noctilith_stone"
+        },
+        {
+            "item": "mechanicus:noctilith_stone"
+        }
+    ],
+    "result": {
+        "item": "mechanicus:efficiency_upgrade_noctilith"
+    }
+}

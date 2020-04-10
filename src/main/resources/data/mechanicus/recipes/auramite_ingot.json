@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "mechanicus:auramite_block"
+        }
+    ],
+    "result": {
+        "item": "mechanicus:auramite_ingot", 
+        "count": 9 
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " SS",
+        "SPS",
+        "BS "
+    ], 
+    "key": {
+        "S": { "item": "mechanicus:adamantium_ingot" },
+        "B": { "item": "mechanicus:adamantium_block" },
+        "P": { "item": "mechanicus:drill_auramite" }
+    },
+    "result": { "item": "mechanicus:drill_adamantium", "count": 1 }
+}

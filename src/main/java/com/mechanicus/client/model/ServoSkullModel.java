@@ -33,7 +33,7 @@ public class ServoSkullModel<T extends MEntityServoSkull> extends EntityModel<T>
 			
 		  basehead = new RendererModel(this, 0, 0);
 	      basehead.addBox(-4F, -4F, -3F, 8, 7, 7);
-	      basehead.setRotationPoint(0F, 0F, 0F);
+	      basehead.setRotationPoint(0F, 5F, 0F);
 	      basehead.setTextureSize(64, 32);
 	      basehead.mirror = true;
 	      setRotation(basehead, 0F, 0F, 0F);
@@ -167,7 +167,7 @@ public class ServoSkullModel<T extends MEntityServoSkull> extends EntityModel<T>
 	@Override
 	public void setRotationAngles(@Nonnull MEntityServoSkull skull, float limbSwing, float limbSwingAmount,
 			float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-		this.basehead.rotateAngleX = headPitch * 0.017453292F;
+		this.basehead.rotateAngleX = 0;
 		this.basehead.rotateAngleY = netHeadYaw * 0.017453292F;
 		this.basehead.rotateAngleZ = (MathHelper.cos(limbSwing * 1.3324F) * 1.4F * limbSwingAmount) / 6;
 	}
