@@ -1,6 +1,7 @@
 package com.mechanicus;
 
-import com.mechanicus.client.ClientHandlerer;
+import com.mechanicus.client.ClientHandler;
+import com.mechanicus.client.renderer.RenderPlayerMechanicus;
 import com.mechanicus.client.renderer.ServoSkullRenderer;
 import com.mechanicus.client.renderer.UpgradeStationRenderer;
 import com.mechanicus.client.sound.MSoundRegistry;
@@ -14,8 +15,10 @@ import com.mechanicus.registry.ItemRegistry;
 import com.mechanicus.registry.TileEntityRegistry;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
@@ -44,7 +47,7 @@ public class Mechanicus {
 		eventBus.addListener(this::setupClient);
 
 		//register ourself
-		MinecraftForge.EVENT_BUS.register(new ClientHandlerer());
+		MinecraftForge.EVENT_BUS.register(new ClientHandler());
 		MinecraftForge.EVENT_BUS.register(this);
 		
 	}
@@ -57,8 +60,8 @@ public class Mechanicus {
 
 	@OnlyIn(Dist.CLIENT)
 	public void setupClient(final FMLClientSetupEvent event) {
-        RenderingRegistry.registerEntityRenderingHandler(MEntityServoSkull.class, ServoSkullRenderer::new);
-        ClientRegistry.bindTileEntitySpecialRenderer(MTEUpgradeStation.class, new UpgradeStationRenderer());
+		RenderingRegistry.registerEntityRenderingHandler(MEntityServoSkull.class, ServoSkullRenderer::new);
+		ClientRegistry.bindTileEntitySpecialRenderer(MTEUpgradeStation.class, new UpgradeStationRenderer());
 	}
 	
 	 

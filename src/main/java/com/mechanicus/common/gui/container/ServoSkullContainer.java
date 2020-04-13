@@ -1,18 +1,26 @@
 package com.mechanicus.common.gui.container;
 
+import java.util.UUID;
+
+import com.mechanicus.client.ClientHandler;
 import com.mechanicus.common.entity.MEntityServoSkull;
+import com.mechanicus.common.inventory.AttachmentInventory;
+import com.mechanicus.common.item.MUpgradeAttachement;
+import com.mechanicus.lib.MLib;
 import com.mechanicus.registry.ContainerRegistry;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.world.World;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.ListNBT;
+import net.minecraft.world.storage.SaveHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -22,6 +30,8 @@ public class ServoSkullContainer extends Container {
 	private IItemHandler playerInventory;
 		
 	private MEntityServoSkull skull;
+	
+	public AttachmentInventory attachmentInventory = new AttachmentInventory();
 	
 	public ServoSkullContainer(int windowId, PlayerInventory playerInventory, int entityID ) {
 		super(ContainerRegistry.SERVO_SKULL, windowId);
@@ -33,15 +43,40 @@ public class ServoSkullContainer extends Container {
 		
 		
 		addSlotBox(skull_inventory, 0, 10, 18, 1, 18, 5, 18);
-		
 		addSlot(new ServoSlot(skull_inventory, 5, 81, 54));
 		addSlot(new ServoSlot(skull_inventory, 6, 101, 54));
+		
+		UUID key = playerInventory.player.getUniqueID();	
+		
+
+		IItemHandler upgradeInv = new InvWrapper(attachmentInventory);
+		addSlot(new UpgradeSlot(upgradeInv, 0, 149, 43));
+		addSlot(new UpgradeSlot(upgradeInv, 1, 225, 43));
+		addSlot(new UpgradeSlot(upgradeInv, 2, 149, 85));
+		addSlot(new UpgradeSlot(upgradeInv, 3, 225, 85));
+		
+		PlayerEntity player = playerInventory.player;
+		if(player.getPersistentData().contains(MLib.MODID + "_attachment")) {
+			INBT items = player.getPersistentData().get(MLib.MODID + "_attachment");
+			if(items instanceof ListNBT) {
+				attachmentInventory.read((ListNBT) items);
+			}
+		}
+		
 	}
 	
 	@Override
 	public boolean canInteractWith(PlayerEntity playerIn) {
 		// TODO Auto-generated method stub
 		return true;
+	}
+	
+	@Override
+	public void onContainerClosed(PlayerEntity playerIn) {
+
+		playerIn.getPersistentData().put(MLib.MODID + "_attachment", attachmentInventory.write());
+		
+		super.onContainerClosed(playerIn);
 	}
 
 	protected int getInventorySize() {
@@ -82,6 +117,22 @@ public class ServoSkullContainer extends Container {
 		public boolean isItemValid(ItemStack stack) {
 			// TODO Auto-generated method stub
 			return false;
+		}
+		
+	}
+	
+	public class UpgradeSlot extends SlotItemHandler {
+		public UpgradeSlot(IItemHandler inventoryIn, int index, int xPosition, int yPosition) {
+			super(inventoryIn, index, xPosition, yPosition);
+			
+		}
+		@Override
+		public boolean isItemValid(ItemStack stack) {
+			if(stack.getItem() instanceof MUpgradeAttachement) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 		
 	}

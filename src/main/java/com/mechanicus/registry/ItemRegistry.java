@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.mechanicus.common.item.MItemBase;
 import com.mechanicus.common.item.MResourceItemBase;
+import com.mechanicus.common.item.MUpgradeAttachement;
 import com.mechanicus.lib.MLib;
 
 import net.minecraft.item.Item;
@@ -16,7 +17,7 @@ public class ItemRegistry {
 	public static MItemBase ADAMANTIUM_INGOT, PLASTEEL_INGOT, AURAMITE_INGOT, NOCTILITH_STONE, UNKNOWN_MACHINE_PART, DRILL_PART;
 	public static MResourceItemBase EFFICIENCY_UPGRADE_PLASTEEL, EFFICIENCY_UPGRADE_AURAMITE, EFFICIENCY_UPGRADE_ADAMANTIUM, EFFICIENCY_UPGRADE_NOCTILITH;
 	public static MResourceItemBase DRILL_PLASTEEL, DRILL_AURAMITE, DRILL_ADAMANTIUM, DRILL_NOCTILITH;
-	public static MResourceItemBase UPGRADE_RIGHT_ARM_PLASTEEL, UPGRADE_LEFT_ARM_PLASTEEL;
+	public static MUpgradeAttachement UPGRADE_RIGHT_ARM_PLASTEEL, UPGRADE_LEFT_ARM_PLASTEEL;
 	public static MResourceItemBase PLASTEEL_PLATING, AURAMITE_PLATING, ADAMANTIUM_PLATING, NOCTILITH_PLATING;
 	
 	public static void initialize() {
@@ -36,15 +37,16 @@ public class ItemRegistry {
 		registeredItems.add(DRILL_ADAMANTIUM = new MResourceItemBase(new Properties().group(MLib.mechanicus).maxStackSize(1),"drill_adamantium"));
 		registeredItems.add(DRILL_NOCTILITH = new MResourceItemBase(new Properties().group(MLib.mechanicus).maxStackSize(1),"drill_noctilith"));
 		
-		registeredItems.add(UPGRADE_RIGHT_ARM_PLASTEEL = new MResourceItemBase(new Properties().group(MLib.mechanicus).maxStackSize(1),"plasteel_right_arm"));
-		registeredItems.add(UPGRADE_LEFT_ARM_PLASTEEL = new MResourceItemBase(new Properties().group(MLib.mechanicus).maxStackSize(1),"plasteel_left_arm"));
+		registeredItems.add(UPGRADE_RIGHT_ARM_PLASTEEL = new MUpgradeAttachement(new Properties().group(MLib.mechanicus).maxStackSize(1),"plasteel_right_arm"));
+		registeredItems.add(UPGRADE_LEFT_ARM_PLASTEEL = new MUpgradeAttachement(new Properties().group(MLib.mechanicus).maxStackSize(1),"plasteel_left_arm"));
 	
 		registeredItems.add(PLASTEEL_PLATING = new MResourceItemBase(new Properties().group(MLib.mechanicus).maxStackSize(16),"plasteel_plating"));
 		registeredItems.add(AURAMITE_PLATING = new MResourceItemBase(new Properties().group(MLib.mechanicus).maxStackSize(16),"auramite_plating"));
 		registeredItems.add(ADAMANTIUM_PLATING = new MResourceItemBase(new Properties().group(MLib.mechanicus).maxStackSize(16),"adamantium_plating"));
 		registeredItems.add(NOCTILITH_PLATING = new MResourceItemBase(new Properties().group(MLib.mechanicus).maxStackSize(16),"noctilith_plating"));
-	}
 
+	}
+	
 	public static void parseItemRegistry(Register<Item> event) {
 		initialize();
 		for (Item i : registeredItems) {
